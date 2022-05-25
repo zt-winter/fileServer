@@ -1,13 +1,25 @@
 package main
 
-import(
+import (
+	"fmt"
+	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 )
 
 
 func main() {
-	p, _ := filepath.Abs(filepath.Dir("/home/zt/"))
+	fString := os.Args[1]
+	length := len(fString)
+	if fString[length-1] != '/' {
+		fString = fString + "/"
+	}
+	p, _ := filepath.Abs(filepath.Dir(fString))
+	fmt.Println(p)
 	http.Handle("/", http.FileServer(http.Dir(p)))
-	http.ListenAndServe(":8000", nil)
+	err := http.ListenAndServe(":8000", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
