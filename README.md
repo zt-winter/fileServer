@@ -4,5 +4,5 @@
 
 ### 使用
 server: ./fileServer 文件目录
-client: 打开浏览器
-server地址:8000
+* client: 打开浏览器
+* server地址:8000
